@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Deep Blue Dev</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ─── LOADING SCREEN ─── -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-wave"></div>
+      <div class="loader-wave"></div>
+      <div class="loader-wave"></div>
+      <p class="loader-text">Setting Sail…</p>
+    </div>
+  </div>
+
+  <!-- ─── CUSTOM CURSOR ─── -->
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
+  <!-- ─── NAVIGATION ─── -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <span class="logo-anchor">⚓</span>
+      <span>Deep Blue</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <canvas id="bubbles"></canvas>
+
+    <div class="hero-content" id="heroContent">
+      <p class="hero-pre reveal-up">Full‑Stack Developer &amp; Creative Technologist</p>
+      <h1 class="hero-name reveal-up delay-1">
+        <span class="name-first">Alex</span>
+        <span class="name-last">Ocean</span>
+      </h1>
+      <p class="hero-sub reveal-up delay-2">
+        I craft digital experiences that run as deep<br>as the ocean — clean, immersive &amp; endlessly fluid.
+      </p>
+      <div class="hero-cta reveal-up delay-3">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+    </div>
+
+    <!-- Floating Straw Hat -->
+    <div class="hat-wrapper" id="floatingHat">
+      <div class="hat-glow"></div>
+      <svg class="straw-hat" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+        <!-- Brim shadow -->
+        <ellipse cx="140" cy="128" rx="130" ry="18" fill="rgba(0,0,0,0.18)" />
+        <!-- Hat brim -->
+        <ellipse cx="140" cy="120" rx="128" ry="20" fill="#c8a04a" />
+        <ellipse cx="140" cy="118" rx="125" ry="17" fill="#d4aa52" />
+        <!-- Brim highlight lines -->
+        <ellipse cx="140" cy="116" rx="118" ry="13" fill="none" stroke="#e0ba64" stroke-width="1.5" opacity="0.6"/>
+        <ellipse cx="140" cy="113" rx="108" ry="10" fill="none" stroke="#e8c870" stroke-width="1" opacity="0.4"/>
+        <!-- Crown -->
+        <path d="M 60 116 Q 70 48 140 38 Q 210 48 220 116 Z" fill="#c8a04a"/>
+        <path d="M 65 116 Q 74 52 140 42 Q 206 52 215 116 Z" fill="#d4aa52"/>
+        <!-- Crown texture lines -->
+        <path d="M 85 110 Q 90 68 140 58 Q 190 68 195 110" fill="none" stroke="#b89040" stroke-width="1.5" opacity="0.5"/>
+        <path d="M 95 112 Q 100 72 140 63 Q 180 72 185 112" fill="none" stroke="#b89040" stroke-width="1" opacity="0.4"/>
+        <!-- Red band -->
+        <path d="M 62 112 Q 70 100 140 96 Q 210 100 218 112 Q 210 108 140 104 Q 70 108 62 112 Z" fill="#c0392b"/>
+        <path d="M 63 106 Q 72 98 140 94 Q 208 98 217 106" fill="none" stroke="#e74c3c" stroke-width="2.5" opacity="0.8"/>
+        <!-- Straw texture hatching -->
+        <line x1="100" y1="55" x2="88" y2="112" stroke="#b89040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="115" y1="48" x2="105" y2="112" stroke="#b89040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="130" y1="44" x2="122" y2="112" stroke="#b89040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="145" y1="43" x2="140" y2="112" stroke="#b89040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="160" y1="44" x2="158" y2="112" stroke="#b89040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="175" y1="48" x2="175" y2="112" stroke="#b89040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="190" y1="55" x2="192" y2="112" stroke="#b89040" stroke-width="0.8" opacity="0.3"/>
+        <!-- Crown top highlight -->
+        <ellipse cx="140" cy="44" rx="18" ry="7" fill="#e0ba64" opacity="0.5"/>
+        <!-- Brim edge detail -->
+        <ellipse cx="140" cy="120" rx="128" ry="20" fill="none" stroke="#b89040" stroke-width="1.5" opacity="0.7"/>
+        <!-- Shine on brim -->
+        <path d="M 60 112 Q 90 106 130 107" fill="none" stroke="#f0d080" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Animated wave divider -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z" fill="var(--deep-navy)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title reveal-up">About Me</h2>
+      <p class="section-sub reveal-up">A developer who dives deep into code and surfaces with elegant solutions.</p>
+
+      <div class="about-grid">
+        <div class="about-card glass reveal-up">
+          <div class="about-icon">🌊</div>
+          <h3>The Philosophy</h3>
+          <p>Like the ocean, great software is both powerful and graceful. I build with depth — every layer matters, every detail considered.</p>
+        </div>
+        <div class="about-card glass reveal-up delay-1">
+          <div class="about-icon">⚡</div>
+          <h3>The Approach</h3>
+          <p>I combine clean architecture with creative problem-solving, delivering experiences that feel effortless yet are technically robust.</p>
+        </div>
+        <div class="about-card glass reveal-up delay-2">
+          <div class="about-icon">🧭</div>
+          <h3>The Journey</h3>
+          <p>5+ years navigating the full stack — from pixel-perfect frontends to scalable backend systems, always charting new waters.</p>
+        </div>
+      </div>
+
+      <div class="about-bio glass reveal-up delay-3">
+        <div class="bio-text">
+          <h3>Hello, I'm <span class="accent">Alex Ocean</span></h3>
+          <p>A passionate full-stack developer based in the coast, where the rhythm of the sea fuels my creativity. I specialize in building modern web applications that prioritize performance, accessibility, and stunning visual design.</p>
+          <p>When I'm not coding, you'll find me exploring tide pools, sketching UI concepts, or chasing the perfect wave.</p>
+          <div class="bio-stats">
+            <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Years Exp.</span></div>
+            <div class="stat"><span class="stat-num">40+</span><span class="stat-label">Projects Done</span></div>
+            <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Happy Clients</span></div>
+          </div>
+        </div>
+        <div class="bio-visual">
+          <div class="avatar-frame">
+            <div class="avatar-ring"></div>
+            <div class="avatar-placeholder">
+              <span>AO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ─── -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title reveal-up">Tech Stack</h2>
+      <p class="section-sub reveal-up">Depths I've explored across the development ocean.</p>
+
+      <div class="skills-grid">
+        <div class="skill-category glass reveal-up">
+          <h3 class="cat-title">Frontend</h3>
+          <div class="skill-bar-list">
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>HTML / CSS</span><span>95%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>JavaScript</span><span>90%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>React</span><span>85%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>TypeScript</span><span>80%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category glass reveal-up delay-1">
+          <h3 class="cat-title">Backend</h3>
+          <div class="skill-bar-list">
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>Node.js</span><span>88%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>Python</span><span>82%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>PostgreSQL</span><span>78%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>REST / GraphQL</span><span>85%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category glass reveal-up delay-2">
+          <h3 class="cat-title">Tools &amp; Cloud</h3>
+          <div class="skill-bar-list">
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>Git / GitHub</span><span>92%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="92"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>Docker</span><span>75%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>AWS / Vercel</span><span>78%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-info"><span>Figma / Design</span><span>70%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="70"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Icon Chips -->
+      <div class="tech-chips reveal-up delay-3">
+        <span class="chip">React</span>
+        <span class="chip">Next.js</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Python</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">MongoDB</span>
+        <span class="chip">Docker</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Tailwind</span>
+        <span class="chip">GraphQL</span>
+        <span class="chip">Redis</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROJECTS ─── -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title reveal-up">Projects</h2>
+      <p class="section-sub reveal-up">A selection of work from the deep.</p>
+
+      <div class="projects-grid">
+
+        <div class="project-card glass reveal-up">
+          <div class="project-thumb" style="--card-hue: 200deg;">
+            <div class="thumb-pattern"></div>
+            <span class="project-num">01</span>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span>React</span><span>Node.js</span><span>MongoDB</span>
+            </div>
+            <h3>OceanCommerce</h3>
+            <p>A full-stack e-commerce platform with real-time inventory, AI-powered recommendations, and seamless payment flows.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-sm btn-primary">Live Demo</a>
+              <a href="#" class="btn btn-sm btn-ghost">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass reveal-up delay-1">
+          <div class="project-thumb" style="--card-hue: 175deg;">
+            <div class="thumb-pattern"></div>
+            <span class="project-num">02</span>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span>Next.js</span><span>TypeScript</span><span>Prisma</span>
+            </div>
+            <h3>TideTrack Dashboard</h3>
+            <p>A real-time analytics dashboard for SaaS businesses with beautiful data visualization and custom reporting tools.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-sm btn-primary">Live Demo</a>
+              <a href="#" class="btn btn-sm btn-ghost">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass reveal-up delay-2">
+          <div class="project-thumb" style="--card-hue: 220deg;">
+            <div class="thumb-pattern"></div>
+            <span class="project-num">03</span>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span>Python</span><span>FastAPI</span><span>AWS</span>
+            </div>
+            <h3>Depth AI</h3>
+            <p>A machine-learning API that classifies underwater species from sonar images — built for marine researchers worldwide.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-sm btn-primary">Live Demo</a>
+              <a href="#" class="btn btn-sm btn-ghost">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass reveal-up delay-3">
+          <div class="project-thumb" style="--card-hue: 185deg;">
+            <div class="thumb-pattern"></div>
+            <span class="project-num">04</span>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span>React Native</span><span>GraphQL</span><span>Redis</span>
+            </div>
+            <h3>Horizon Social</h3>
+            <p>A minimalist social app focusing on meaningful connections — real-time messaging, stories, and community hubs.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-sm btn-primary">Live Demo</a>
+              <a href="#" class="btn btn-sm btn-ghost">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title reveal-up">Send a Message</h2>
+      <p class="section-sub reveal-up">Let's chart a course together — drop me a line.</p>
+
+      <div class="contact-wrapper">
+        <div class="contact-info reveal-up">
+          <div class="contact-card glass">
+            <div class="c-icon">📍</div>
+            <div>
+              <strong>Location</strong>
+              <p>Pacific Coast, CA</p>
+            </div>
+          </div>
+          <div class="contact-card glass">
+            <div class="c-icon">📧</div>
+            <div>
+              <strong>Email</strong>
+              <p>alex@deepblue.dev</p>
+            </div>
+          </div>
+          <div class="contact-card glass">
+            <div class="c-icon">⚓</div>
+            <div>
+              <strong>Available For</strong>
+              <p>Freelance &amp; Full-time</p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form glass reveal-up delay-1" id="contactForm" novalidate>
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder=" " required autocomplete="name"/>
+            <label for="name">Your Name</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder=" " required autocomplete="email"/>
+            <label for="email">Email Address</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="subject" name="subject" placeholder=" " required />
+            <label for="subject">Subject</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+            <label for="message">Your Message</label>
+            <div class="form-line"></div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit">
+            <span class="btn-text">Cast the Message</span>
+            <span class="btn-icon">🌊</span>
+          </button>
+          <p class="form-success" id="formSuccess">Message sent! I'll reply soon. ⚓</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer wave top -->
+    <div class="contact-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="rgba(0,20,50,0.6)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>Crafted with 🌊 by <strong>Alex Ocean</strong> &mdash; &copy; 2026</p>
+    <p class="footer-sub">Built with vanilla HTML, CSS &amp; JS</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
