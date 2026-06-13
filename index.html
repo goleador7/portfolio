@@ -1,158 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Goleador — Developer Portfolio</title>
-<meta name="description" content="Goleador — modern developer portfolio. Premium UI, smooth animations, creative web projects." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
-<link rel="icon"  href="src/luffy.jpg" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goleador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Ambient background -->
-<div class="bg-ambient" aria-hidden="true">
-  <div class="blur-orb orb-1"></div>
-  <div class="blur-orb orb-2"></div>
-  <div class="blur-orb orb-3"></div>
-  <canvas id="particles"></canvas>
+
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="src/background.mp4" type="video/mp4">
+</video>
+<div id="bg-overlay"></div>
+
+<div id="app">
+
+  <!-- HEADER -->
+  <div id="topbar">
+    <span id="topbar-brand">Goleador</span>
+    <span id="topbar-clock"></span>
+  </div>
+
+  <!-- CAROUSEL -->
+  <div id="carousel-wrap">
+    <div id="icon-track"></div>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="content"></div>
+
+  <!-- STATUS BAR -->
+  <div id="statusbar">
+    <div style="display:flex;gap:16px;">
+      <span><span class="key">←</span> <span class="key">→</span> Navigate</span>
+      <span><span class="key">Enter</span> Select</span>
+    </div>
+    <span></span>
+  </div>
+
 </div>
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
-  <div class="nav-logo">Goleador<span>.</span></div>
-  <ul class="nav-links">
-    <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
-    <li><a href="#about-me" class="nav-link" data-section="about-me">About me</a></li>
-    <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-    <li><a href="#socials" class="nav-link" data-section="socials">Socials</a></li>
-  </ul>
-</nav>
-<main>
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-inner" id="heroParallax">
-      <div class="hero-image reveal">
-        <div class="ring"></div>
-        <div class="image-glow"></div>
-        <div class="image-wrap">
-          <img src="src/luffy.jpg" alt="Goleador profile" />
-        </div>
-      </div>
 
-      <div class="hero-text">
-        <h1 class="nickname reveal">
-          Goleador
-        </h1>
-        <p class="about reveal">
-          Passionate developer focused on creating modern web experiences,
-          smooth UI animations, and creative digital projects.
-        </p>
-        <div class="cta-row reveal">
-          <a href="#projects" class="btn-primary">
-            <span>View Projects</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#socials" class="btn-ghost">Get in touch</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-<section id="about-me" class="projects">
-    <header class="section-head reveal">
-      <h2>About me</h2>
-    </header>
-    <div class="about-me">
-      <p class="about reveal">
-          Passionate developer focused on creating modern web experiences,
-          smooth UI animations, and creative digital projects.
-      </p>
-    </div>
-</section>
-  <!-- PROJECTS -->
-  <section id="projects" class="projects">
-    <header class="section-head reveal">
-  
-      <h2>Projects</h2>
-    </header>
-    <div class="project-grid">
-      <article class="project-card reveal">
-         <img src="src/dominos.png" alt="">
-        <div class="card-glow"></div>
-        <h3>DOMINOS STORE</h3>
-        <p>A premium component library with glassmorphism, animations, and accessible primitives.</p>
-        <div class="tech">
-          <span>React</span><span>TypeScript</span><span>Framer Motion</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://dominos-store.42web.io/" class="btn-mini">CHECK</a>
-          <a href="#" class="btn-mini ghost">GitHub</a>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <div class="card-glow"></div>
-        <h3>Nebula Dashboard</h3>
-        <p>Realtime analytics dashboard with smooth charts, dark UI, and modular widgets.</p>
-        <div class="tech">
-          <span>Next.js</span><span>D3</span><span>WebSockets</span>
-        </div>
-        <div class="card-actions">
-          <a href="#" class="btn-mini">Demo</a>
-          <a href="#" class="btn-mini ghost">GitHub</a>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <div class="card-glow"></div>
-        <h3>Pixel Pirates</h3>
-        <p>An anime-inspired browser game with particle effects and smooth canvas rendering.</p>
-        <div class="tech">
-          <span>Canvas</span><span>Vanilla JS</span><span>GSAP</span>
-        </div>
-        <div class="card-actions">
-          <a href="#" class="btn-mini">Demo</a>
-          <a href="#" class="btn-mini ghost">GitHub</a>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <div class="card-glow"></div>
-        <h3>Sora Notes</h3>
-        <p>A minimal markdown notes app with cloud sync, blazing-fast search and offline mode.</p>
-        <div class="tech">
-          <span>Svelte</span><span>IndexedDB</span><span>PWA</span>
-        </div>
-        <div class="card-actions">
-          <a href="#" class="btn-mini">Demo</a>
-          <a href="#" class="btn-mini ghost">GitHub</a>
-        </div>
-      </article>
-    </div>
-  </section>
-  <!-- SOCIALS -->
-  <section id="socials" class="socials">
-    <header class="section-head reveal">
-
-      <h2>Find me online</h2>
-    </header>
-    <div class="social-glass reveal">
-      <a href="https://github.com/goleador7" class="social-item" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.76.4-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A10.53 10.53 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5z"/></svg>
-        <span>GitHub</span>
-      </a>
-      <a href="https://www.instagram.com/imado__777/" class="social-item" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-        <span>Instagram</span>
-      </a>
-      <a href="https://discord.gg/Tq7guq9QP" class="social-item" aria-label="Discord">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3a14.6 14.6 0 0 0-.617 1.265 18.27 18.27 0 0 0-5.487 0A12 12 0 0 0 9.83 3a19.7 19.7 0 0 0-3.76 1.37C2.62 9.59 1.66 14.66 2.14 19.66a19.9 19.9 0 0 0 6 3.05c.49-.66.92-1.36 1.29-2.1-.71-.27-1.38-.6-2.02-.99.17-.13.34-.26.5-.4 3.92 1.83 8.15 1.83 12.02 0 .17.14.33.27.5.4-.65.39-1.32.72-2.03.99.37.74.81 1.44 1.29 2.1a19.86 19.86 0 0 0 6.01-3.05c.55-5.69-.94-10.71-3.95-15.29zM9.68 16.42c-1.18 0-2.16-1.08-2.16-2.4 0-1.32.95-2.4 2.16-2.4 1.21 0 2.18 1.09 2.16 2.4 0 1.32-.95 2.4-2.16 2.4zm4.64 0c-1.18 0-2.16-1.08-2.16-2.4 0-1.32.95-2.4 2.16-2.4 1.21 0 2.18 1.09 2.16 2.4 0 1.32-.95 2.4-2.16 2.4z"/></svg>
-        <span>Discord</span>
-      </a>
-    </div>
-    <p class="footer-line">© <span id="year"></span> Goleador — Crafted with care.</p>
-  </section>
-</main>
-<script src="script.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
