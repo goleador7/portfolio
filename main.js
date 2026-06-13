@@ -1,6 +1,6 @@
 const sections = [
   { title:'Home',     icon:'ti-home',       bg:'linear-gradient(145deg,#0d1a2e,#1a3050)', accent:'#7ab3d4' },
-  { title:'About me',    icon:'ti-user',       bg:'linear-gradient(145deg,#0d1e2b,#0f2a38)', accent:'#5dcaa5' },
+  { title:'Aboutme',    icon:'ti-user',       bg:'linear-gradient(145deg,#0d1e2b,#0f2a38)', accent:'#5dcaa5' },
   { title:'Services', icon:'ti-briefcase',  bg:'linear-gradient(145deg,#0e1a1a,#0f2e2e)', accent:'#2a9d8f' },
   { title:'Projects', icon:'ti-folder',     bg:'linear-gradient(145deg,#1a0d0d,#2e1010)', accent:'#e76f51' },
   { title:'Contact',  icon:'ti-mail',       bg:'linear-gradient(145deg,#0d1a10,#112a14)', accent:'#52b788' },
