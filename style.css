@@ -103,7 +103,112 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 .icon-item.active .icon-label { opacity: 1; }
 
 /* ── CONTENT ── */
-#content { flex: 1; }
+#content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── SECTION TRANSITIONS ── */
+.section-inner {
+  width: 100%;
+  height: 100%;
+  animation: sectionIn 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes sectionIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── GLITTEN FONT ──
+   Place Glitten.woff2 / Glitten.ttf in your project root
+   (same folder as index.html). Download from:
+   https://creativefabrica.com  →  search "Glitten"
+   Cormorant Garamond is the Google-Fonts fallback (already loaded).
+*/
+@font-face {
+  font-family: 'Glitten';
+  src: url('Glitten.woff2') format('woff2'),
+       url('Glitten.ttf')   format('truetype');
+  font-weight: normal;
+  font-style:  normal;
+  font-display: swap;
+}
+
+/* ── HOME SECTION ── */
+.section-home {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Character — centered, bottom-anchored, in front of the title */
+.home-char {
+  position: absolute;
+  bottom: 0;
+  left: 37%;
+  bottom: 20%;
+  transform: translateX(-50%);
+  height: 80%;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  /* subtle halo so the character reads against any BG tone */
+  filter: drop-shadow(0 0 28px rgba(122, 179, 212, 0.18));
+}
+
+/* Text block — upper-left, behind character */
+.home-text {
+  position: absolute;
+  top: 8%;
+  left: 5%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.home-title {
+
+  font-family: 'Cinzel', serif;
+  font-size: clamp(60px, 9.5vw, 148px);
+  font-weight: 700;
+  color: var(--moon-white);
+  letter-spacing:2px;
+  line-height: 1;
+  margin: 0;
+  /* soft shadow so title reads over bright BG areas */
+  text-shadow:
+    0 0 10px rgba(255,255,255,.2),
+    0 0 40px rgba(255,255,255,.1),
+    0 8px 40px rgba(0,0,0,.6);
+}
+
+.home-para {
+  margin-top: 20px;
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 400;
+  color: var(--moon-blue);
+  opacity: 0.72;
+  line-height: 1.8;
+  max-width: 280px;
+  letter-spacing: 0.035em;
+}
+
+/* ── PLACEHOLDER SECTIONS ── */
+.section-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--moon-white);
+  opacity: 0.18;
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
 
 /* ── STATUS BAR ── */
 #statusbar {

@@ -1,9 +1,9 @@
 const sections = [
-  { title:'Home',     icon:'ti-smart-home',       bg:'linear-gradient(145deg,#0d1a2e,#1a3050)', accent:'#7ab3d4' },
-  { title:'About me',    icon:'ti-user-circle',       bg:'linear-gradient(145deg,#0d1e2b,#0f2a38)', accent:'#5dcaa5' },
-  { title:'skills', icon:'ti-code',  bg:'linear-gradient(145deg,#0e1a1a,#0f2e2e)', accent:'#2a9d8f' },
-  { title:'Projects', icon:'ti-folder-open',     bg:'linear-gradient(145deg,#1a0d0d,#2e1010)', accent:'#e76f51' },
-  { title:'Contact',  icon:'ti-mail-filled',       bg:'linear-gradient(145deg,#0d1a10,#112a14)', accent:'#52b788' },
+  { title:'Home',     icon:'ti-smart-home',   bg:'linear-gradient(145deg,#0d1a2e,#1a3050)', accent:'#7ab3d4' },
+  { title:'About me', icon:'ti-user-circle',  bg:'linear-gradient(145deg,#0d1e2b,#0f2a38)', accent:'#5dcaa5' },
+  { title:'skills',   icon:'ti-code',         bg:'linear-gradient(145deg,#0e1a1a,#0f2e2e)', accent:'#2a9d8f' },
+  { title:'Projects', icon:'ti-folder-open',  bg:'linear-gradient(145deg,#1a0d0d,#2e1010)', accent:'#e76f51' },
+  { title:'Contact',  icon:'ti-mail-filled',  bg:'linear-gradient(145deg,#0d1a10,#112a14)', accent:'#52b788' },
 ];
 
 let current = 0;
@@ -34,8 +34,42 @@ function goTo(idx) {
   const wrapW  = wrap.offsetWidth;
   const offset = (wrapW / 2) - (idx * STEP) - (ITEM_W / 2) - 24;
   track.style.transform = `translateX(${offset}px)`;
+
+  renderContent(idx);
 }
 
+/* ── CONTENT RENDERER ── */
+const renderers = [homeHTML, aboutHTML, skillsHTML, projectsHTML, contactHTML];
+
+function renderContent(idx) {
+  const el  = document.getElementById('content');
+  const div = document.createElement('div');
+  div.className = 'section-inner';
+  div.innerHTML = renderers[idx]?.() ?? '';
+  el.innerHTML  = '';
+  el.appendChild(div);
+}
+
+/* ── HOME ── */
+function homeHTML() {
+  return `
+    <div class="section-home">
+      <img class="home-char" src="src/luffy.png" alt="">
+      <div class="home-text">
+        <h1 class="home-title">Goleador</h1>
+        <p class="home-para">Born from curiosity and driven by freedom, I build digital worlds like a journey across the Grand Line. Every line of code is a step toward a bigger dream — simple, bold, and unstoppable, just like a pirate chasing the horizon.</p>
+      </div>
+    </div>
+  `;
+}
+
+/* ── PLACEHOLDERS (replace with real content later) ── */
+function aboutHTML()    { return `<div class="section-placeholder"><span>About Me</span></div>`; }
+function skillsHTML()   { return `<div class="section-placeholder"><span>Skills</span></div>`; }
+function projectsHTML() { return `<div class="section-placeholder"><span>Projects</span></div>`; }
+function contactHTML()  { return `<div class="section-placeholder"><span>Contact</span></div>`; }
+
+/* ── EVENTS ── */
 window.addEventListener('load',   () => goTo(0));
 window.addEventListener('resize', () => goTo(current));
 
@@ -50,6 +84,7 @@ wrap.addEventListener('wheel', e => {
   else                               { if (current > 0)                   goTo(current - 1); }
 }, { passive: false });
 
+/* ── CLOCK ── */
 function tick() {
   const t = new Date().toLocaleTimeString('fr-DZ', { hour: '2-digit', minute: '2-digit' });
   document.getElementById('topbar-clock').textContent = t;
