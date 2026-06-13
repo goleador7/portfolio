@@ -90,9 +90,48 @@ function aboutHTML() {
         </h2>
 
         <p class="about-text">
-         better known as Goleador, a Master's student specializing in Artificial Intelligence and Cybersecurity, holding a Bachelor's degree in Computer Science. Driven by curiosity and a passion for technology, I enjoy building digital experiences that are both innovative and impactful. As a Full-Stack Developer and founder of Riwaq Dev, I focus on creating scalable web applications, intuitive user interfaces, and solutions that solve real problems. My interests span software engineering, AI, cybersecurity, and entrepreneurship, where I continuously challenge myself to learn, grow, and turn ambitious ideas into reality.
+          better known as Goleador, a Master's student specializing
+          in Artificial Intelligence and Cybersecurity, holding a Bachelor's
+          degree in Computer Science , As a Full Stack Developer and CEO of Riwaq Dev,
+          I focus on creating scalable web applications, intuitive user interfaces, and 
+          solutions that solve real-world problems.
         </p>
- 
+
+      </div>
+
+      <div class="about-terminal">
+
+        <div class="terminal-header">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="terminal-body">
+
+          <p><span>$</span> whoami</p>
+          <p class="output">Imad (Goleador)</p>
+
+          <p><span>$</span> role</p>
+          <p class="output">AI & Cybersecurity Student</p>
+
+          <p><span>$</span> degree</p>
+          <p class="output">Bachelor in Computer Science</p>
+
+          <p><span>$</span> company</p>
+          <p class="output">CEO @ Riwaq Dev</p>
+
+          <p><span>$</span> focus</p>
+          <p class="output">Full Stack Development</p>
+
+          <p><span>$</span> status</p>
+          <p class="output typing">
+            Building. Learning. Growing.
+            <span class="cursor">|</span>
+          </p>
+
+        </div>
+
       </div>
 
     </div>
