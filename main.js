@@ -137,7 +137,67 @@ function aboutHTML() {
     </div>
   `;
 }
-function skillsHTML() { return `<div class="section-placeholder"><span>Skills</span></div>`; }
+function skillsHTML() {
+  const skills = [
+    {
+      icon: "ti-brand-html5",
+      name: "HTML",
+      desc: "Semantic markup & accessibility"
+    },
+    {
+      icon: "ti-database",
+      name: "MySQL",
+      desc: "Database design & optimization"
+    },
+    {
+      icon: "ti-brand-python",
+      name: "Python",
+      desc: "AI, NLP & automation"
+    },
+    {
+      icon: "ti-brand-javascript",
+      name: "JavaScript",
+      desc: "Interactive web experiences"
+    },
+    {
+      icon: "ti-brand-laravel",
+      name: "Laravel",
+      desc: "Modern backend architecture"
+    },
+    {
+      icon: "ti-brand-css3",
+      name: "CSS",
+      desc: "Animations & responsive UI"
+    }
+  ];
+
+  return `
+    <div class="skills-section">
+
+      <div class="skills-header">
+        <h2>Skills & Expertise</h2>
+        <p>Technologies I use to bring ideas to life.</p>
+      </div>
+
+      <div class="skills-grid">
+        ${skills.map(skill => `
+          <div class="skill-card">
+
+            <div class="skill-icon">
+              <i class="ti ${skill.icon}"></i>
+            </div>
+
+            <h3>${skill.name}</h3>
+
+            <p>${skill.desc}</p>
+
+          </div>
+        `).join('')}
+      </div>
+
+    </div>
+  `;
+}
 function projectsHTML() { return `<div class="section-placeholder"><span>Projects</span></div>`; }
 function contactHTML() { return `<div class="section-placeholder"><span>Contact</span></div>`; }
 
