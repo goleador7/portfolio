@@ -660,9 +660,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 }
 
 .explorer-list{
-    max-width:760px;
+    width:100%;
+    max-width:980px;
 
-    border-radius:16px;
+    border-radius:18px;
     overflow:hidden;
 
     background:rgba(255,255,255,.02);
@@ -673,11 +674,11 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 
 .explorer-list-header{
     display:grid;
-    grid-template-columns:1fr 190px 130px;
+    grid-template-columns:1fr 220px 150px;
 
-    padding:10px 20px;
+    padding:14px 28px;
 
-    font-size:11.5px;
+    font-size:12.5px;
     letter-spacing:.05em;
     text-transform:uppercase;
     color:var(--moon-blue);
@@ -690,10 +691,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 
 .folder-row{
     display:grid;
-    grid-template-columns:1fr 190px 130px;
+    grid-template-columns:1fr 220px 150px;
     align-items:center;
 
-    padding:12px 20px;
+    padding:18px 28px;
 
     cursor:pointer;
     outline:none;
@@ -714,23 +715,23 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 .folder-row .col-name{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:16px;
 
-    font-size:13.5px;
+    font-size:16px;
     color:var(--moon-white);
     letter-spacing:.02em;
 }
 
 .folder-row .col-date,
 .folder-row .col-type{
-    font-size:12.5px;
+    font-size:13.5px;
     color:var(--moon-blue);
     opacity:.65;
 }
 
 .folder-svg-sm{
-    width:22px;
-    height:20px;
+    width:30px;
+    height:27px;
     flex-shrink:0;
     filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));
 }
@@ -740,6 +741,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
   .folder-row .col-date{ display:none; }
   .explorer-list-header{ grid-template-columns:1fr 100px; }
   .folder-row{ grid-template-columns:1fr 100px; }
+}
+
+/* center the folder list view (browsing state only) */
+.explorer[data-view="grid"]{
+    align-items:center;
+    justify-content:center;
+}
+
+.explorer[data-view="grid"] .explorer-crumbs{
+    width:100%;
+    max-width:980px;
+    justify-content:flex-start;
 }
 
 .explorer-empty{
@@ -800,6 +813,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
     min-width:0;
     display:flex;
     flex-direction:column;
+    align-items:flex-start;
     gap:16px;
 }
 
@@ -963,11 +977,15 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 
 .live-preview-card{
     position:relative;
-    flex:1;
 
     display:block;
-    border-radius:18px;
+    width:100%;
+    max-width:340px;
+    aspect-ratio:16/10;
+
+    border-radius:16px;
     overflow:hidden;
+    flex-shrink:0;
 
     border:1px solid rgba(255,255,255,.08);
     background:#0b1016;
@@ -984,13 +1002,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 }
 
 .live-preview-frame iframe{
-    width:1440px;
-    height:900px;
+    width:100%;
+    height:100%;
     border:0;
     pointer-events:none;
-
-    transform:scale(0.34);
-    transform-origin:top left;
 }
 
 .live-preview-overlay{
@@ -1021,8 +1036,25 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
     backdrop-filter:blur(2px);
 }
 
-.live-preview-card:hover .live-preview-frame iframe{
-    transform:scale(0.345);
+/* ── BUILT-WITH META (under the preview thumbnail) ── */
+.preview-meta{
+    width:100%;
+    max-width:340px;
+}
+
+.preview-meta-label{
+    display:block;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.tech-pill-sm{
+    font-size:11px;
+    padding:5px 10px;
 }
 
 @media(max-width:900px){

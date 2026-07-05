@@ -373,6 +373,13 @@ function renderProjectDetail(id) {
           </div>
         </a>
 
+        <div class="preview-meta">
+          <span class="preview-meta-label">Built with</span>
+          <div class="tag-row">
+            ${data.tech.map(t => `<span class="tech-pill tech-pill-sm">${t}</span>`).join('')}
+          </div>
+        </div>
+
       </div>
 
     </div>
