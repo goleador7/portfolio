@@ -980,8 +980,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 
     display:block;
     width:100%;
-    max-width:480px;
-    aspect-ratio:16/10;
+    max-width:none;
+    aspect-ratio:16/9;
 
     border-radius:16px;
     overflow:hidden;
@@ -1039,7 +1039,20 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 /* ── BUILT-WITH META (under the preview thumbnail) ── */
 .preview-meta{
     width:100%;
-    max-width:480px;
+    max-width:none;
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    background:rgba(255,255,255,.02);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:16px;
+    padding:20px 22px;
+}
+
+.preview-meta .tag-row{
+    gap:10px;
 }
 
 .preview-meta-label{
@@ -1053,8 +1066,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 }
 
 .tech-pill-sm{
-    font-size:11px;
-    padding:5px 10px;
+    font-size:12.5px;
+    padding:7px 14px;
 }
 
 @media(max-width:900px){
