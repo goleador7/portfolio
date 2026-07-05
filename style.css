@@ -1401,12 +1401,16 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 @media (max-width:768px){
   /* the app shell stays fixed-height; only the content area scrolls
      so stacked sections can exceed one screen without page-scroll */
-  #content{ overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  #content{
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+  }
   .section-inner{ height:auto; min-height:100%; }
   #statusbar{ display:none; } /* keyboard hints are irrelevant on touch */
 
   /* CONTACT — let it grow past one screen; #content scrolls to reveal it */
-  .contact-section{ height:auto; min-height:100%; justify-content:flex-start; padding-top:32px; padding-bottom:32px; }
+  .contact-section{ height:auto; min-height:100%; justify-content:flex-start; padding-top:32px; padding-bottom:calc(56px + env(safe-area-inset-bottom, 0px)); }
 
   /* HOME — stack character under the title, everything centered */
   .section-home{
