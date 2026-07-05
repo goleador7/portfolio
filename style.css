@@ -980,7 +980,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 
     display:block;
     width:100%;
-    max-width:340px;
+    max-width:480px;
     aspect-ratio:16/10;
 
     border-radius:16px;
@@ -1039,7 +1039,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 /* ── BUILT-WITH META (under the preview thumbnail) ── */
 .preview-meta{
     width:100%;
-    max-width:340px;
+    max-width:480px;
 }
 
 .preview-meta-label{
