@@ -198,7 +198,227 @@ function skillsHTML() {
     </div>
   `;
 }
-function projectsHTML() { return `<div class="section-placeholder"><span>Projects</span></div>`; }
+/* ══════════════════════════════════════════════
+   PROJECTS — FILE EXPLORER
+═══════════════════════════════════════════════ */
+
+/* ── DATA ── */
+const projectFolders = [
+  { id: 'riwa9-store',  name: 'RIWA9 STORE',    icon: 'ti-shopping-cart', hasContent: true  },
+  { id: 'portfolio',    name: 'Portfolio',      icon: 'ti-briefcase',     hasContent: false },
+  { id: 'ai-projects',  name: 'AI Projects',    icon: 'ti-brain',         hasContent: false },
+  { id: 'freelance',    name: 'Freelance Work', icon: 'ti-folder',        hasContent: false },
+];
+
+const projectData = {
+  'riwa9-store': {
+    title: 'RIWA9 STORE',
+    description: `A complete ecommerce platform built for the Algerian market selling PC components and gaming accessories. Built with a decoupled architecture using a Vanilla JavaScript frontend communicating with a Laravel REST API. Focused on scalability, performance and modern ecommerce features.`,
+    tech: ['Laravel', 'REST API', 'JavaScript', 'HTML5', 'CSS3', 'MySQL', 'Sanctum Auth', 'Railway', 'Vercel', 'Cloudinary'],
+    featureGroups: [
+      { label: 'Auth & Users', items: ['Register/Login', 'Forgot Password', 'User Profile', 'Role Management'] },
+      { label: 'Shopping', items: ['Shopping Cart', 'Guest Cart Merge', 'Wishlist', 'Reviews', 'Checkout'] },
+      { label: 'Catalog', items: ['Categories', 'Subcategories', 'Brands', 'Search', 'Filtering', 'Sorting'] },
+      { label: 'Delivery', items: ['Dynamic Delivery Pricing', 'Wilaya Selector', 'Commune Selector', 'Orders'] },
+      { label: 'Admin', items: ['Admin Dashboard', 'Product CRUD', 'Order Management', 'Delivery Management', 'Coupons', 'Analytics Dashboard'] },
+      { label: 'Engineering', items: ['Responsive Design', 'REST Architecture'] },
+    ],
+    architecture: `Decoupled architecture: a Vanilla JS single-page frontend (deployed on Vercel) communicates with a Laravel REST API backend (deployed on Railway, MySQL). Authentication is stateless via Sanctum tokens, media is served through Cloudinary, and uploaded assets persist via a Railway Volume.`,
+    stats: [
+      { value: '13+', label: 'Pages' },
+      { value: '40+', label: 'API Endpoints' },
+      { value: 'Laravel', label: 'Backend' },
+      { value: 'Vanilla JS', label: 'Frontend' },
+    ],
+    website: 'https://riwa9.vercel.app',
+    github: null,
+    gallery: 4,
+  }
+};
+
+/* ── STATE ── */
+const explorerState = { view: 'grid', activeId: null };
+
+/* ── RENDER: FOLDER GRID ── */
+function renderFolderGrid() {
+  return `
+    <div class="explorer-crumbs">
+      <span class="crumb-current"><i class="ti ti-folder-open"></i> Projects</span>
+    </div>
+
+    <div class="explorer-grid">
+      ${projectFolders.map(f => `
+        <div class="folder-item" data-folder="${f.id}" tabindex="0">
+          <div class="folder-icon-wrap">
+            <svg viewBox="0 0 48 48" class="folder-svg" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="grad-${f.id}" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.95"/>
+                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.55"/>
+                </linearGradient>
+              </defs>
+              <path d="M4 12.5C4 10.567 5.567 9 7.5 9H18L21.5 13H40.5C42.433 13 44 14.567 44 16.5V35.5C44 37.433 42.433 39 40.5 39H7.5C5.567 39 4 37.433 4 35.5V12.5Z" fill="url(#grad-${f.id})" opacity="0.5"/>
+              <path d="M4 16.5C4 15.119 5.119 14 6.5 14H41.5C42.881 14 44 15.119 44 16.5V35.5C44 37.433 42.433 39 40.5 39H7.5C5.567 39 4 37.433 4 35.5V16.5Z" fill="url(#grad-${f.id})"/>
+            </svg>
+            <i class="ti ${f.icon} folder-glyph"></i>
+          </div>
+          <span class="folder-name">${f.name}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ── RENDER: EMPTY / COMING SOON ── */
+function renderComingSoon(folder) {
+  return `
+    <div class="explorer-crumbs">
+      <button class="explorer-back" data-back="1"><i class="ti ti-arrow-left"></i> Back</button>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-current">${folder.name}</span>
+    </div>
+    <div class="explorer-empty">
+      <i class="ti ti-folder-x"></i>
+      <p>This folder is empty for now.</p>
+      <span>More projects are on the way.</span>
+    </div>
+  `;
+}
+
+/* ── RENDER: PROJECT DETAIL (RIWA9 STORE) ── */
+function renderProjectDetail(id) {
+  const folder = projectFolders.find(f => f.id === id);
+  const data = projectData[id];
+  if (!data) return renderComingSoon(folder);
+
+  return `
+    <div class="explorer-crumbs">
+      <button class="explorer-back" data-back="1"><i class="ti ti-arrow-left"></i> Back</button>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-current">${data.title}</span>
+    </div>
+
+    <div class="project-detail">
+
+      <div class="project-panel project-panel-left">
+
+        <h2 class="project-title">${data.title}</h2>
+        <p class="project-desc">${data.description}</p>
+
+        <div class="project-block">
+          <h4>Tech Stack</h4>
+          <div class="tag-row">
+            ${data.tech.map(t => `<span class="tech-pill">${t}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="project-block">
+          <h4>Main Features</h4>
+          <div class="feature-groups">
+            ${data.featureGroups.map(g => `
+              <div class="feature-group">
+                <span class="feature-group-label">${g.label}</span>
+                <div class="tag-row">
+                  ${g.items.map(i => `<span class="feature-pill">${i}</span>`).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="project-block">
+          <h4>Architecture</h4>
+          <p class="project-architecture">${data.architecture}</p>
+        </div>
+
+        <div class="project-block">
+          <h4>Statistics</h4>
+          <div class="stats-row">
+            ${data.stats.map(s => `
+              <div class="stat-card">
+                <span class="stat-value">${s.value}</span>
+                <span class="stat-label">${s.label}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="project-buttons">
+          <a class="project-btn project-btn-primary" href="${data.website}" target="_blank" rel="noopener">
+            <i class="ti ti-external-link"></i> Visit Website
+          </a>
+          ${data.github ? `
+            <a class="project-btn project-btn-ghost" href="${data.github}" target="_blank" rel="noopener">
+              <i class="ti ti-brand-github"></i> GitHub
+            </a>
+          ` : ''}
+        </div>
+
+      </div>
+
+      <div class="project-panel project-panel-right">
+
+        <div class="screenshot-main">
+          <i class="ti ti-photo"></i>
+          <span>Screenshot preview</span>
+        </div>
+
+        <div class="screenshot-gallery">
+          ${Array.from({ length: data.gallery }).map(() => `
+            <div class="screenshot-thumb">
+              <i class="ti ti-photo"></i>
+            </div>
+          `).join('')}
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+/* ── MASTER RENDER ── */
+function projectsHTML() {
+  let inner;
+  if (explorerState.view === 'grid') {
+    inner = renderFolderGrid();
+  } else {
+    const folder = projectFolders.find(f => f.id === explorerState.activeId);
+    inner = folder && folder.hasContent
+      ? renderProjectDetail(folder.id)
+      : renderComingSoon(folder);
+  }
+  return `<div class="explorer" data-view="${explorerState.view}">${inner}</div>`;
+}
+
+/* ── EXPLORER NAVIGATION ── */
+function explorerOpen(id) {
+  explorerState.view = 'detail';
+  explorerState.activeId = id;
+  renderContent(3);
+}
+
+function explorerBack() {
+  explorerState.view = 'grid';
+  explorerState.activeId = null;
+  renderContent(3);
+}
+
+/* Event delegation on the stable #content container so the explorer
+   keeps working across re-renders without touching the core nav logic. */
+document.getElementById('content').addEventListener('click', (e) => {
+  const folderEl = e.target.closest('.folder-item');
+  if (folderEl) { explorerOpen(folderEl.dataset.folder); return; }
+
+  const backEl = e.target.closest('[data-back]');
+  if (backEl) { explorerBack(); return; }
+});
+
+document.getElementById('content').addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+  const folderEl = e.target.closest('.folder-item');
+  if (folderEl) explorerOpen(folderEl.dataset.folder);
+});
 function contactHTML() { return `<div class="section-placeholder"><span>Contact</span></div>`; }
 
 /* ── EVENTS ── */
