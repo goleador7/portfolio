@@ -230,7 +230,7 @@ const projectData = {
       { value: 'Laravel', label: 'Backend' },
       { value: 'Vanilla JS', label: 'Frontend' },
     ],
-    website: 'https://riwa9.vercel.app',
+    website: 'https://riwa9-store.vercel.app/',
     github: null,
     gallery: 4,
   }
