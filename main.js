@@ -204,10 +204,7 @@ function skillsHTML() {
 
 /* ── DATA ── */
 const projectFolders = [
-  { id: 'riwa9-store',  name: 'RIWA9 STORE',    icon: 'ti-shopping-cart', hasContent: true  },
-  { id: 'portfolio',    name: 'Portfolio',      icon: 'ti-briefcase',     hasContent: false },
-  { id: 'ai-projects',  name: 'AI Projects',    icon: 'ti-brain',         hasContent: false },
-  { id: 'freelance',    name: 'Freelance Work', icon: 'ti-folder',        hasContent: false },
+  { id: 'riwa9-store', name: 'riwa9-store', dateModified: '6/30/2026 11:12 PM', type: 'File folder', hasContent: true },
 ];
 
 const projectData = {
@@ -232,39 +229,41 @@ const projectData = {
     ],
     website: 'https://riwa9-store.vercel.app/',
     github: null,
-    gallery: 4,
   }
 };
 
 /* ── STATE ── */
 const explorerState = { view: 'grid', activeId: null };
 
-/* ── RENDER: FOLDER GRID ── */
+/* ── RENDER: FOLDER LIST (Windows-Explorer style) ── */
 function renderFolderGrid() {
   return `
     <div class="explorer-crumbs">
       <span class="crumb-current"><i class="ti ti-folder-open"></i> Projects</span>
     </div>
 
-    <div class="explorer-grid">
-      ${projectFolders.map(f => `
-        <div class="folder-item" data-folder="${f.id}" tabindex="0">
-          <div class="folder-icon-wrap">
-            <svg viewBox="0 0 48 48" class="folder-svg" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="grad-${f.id}" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.95"/>
-                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.55"/>
-                </linearGradient>
-              </defs>
-              <path d="M4 12.5C4 10.567 5.567 9 7.5 9H18L21.5 13H40.5C42.433 13 44 14.567 44 16.5V35.5C44 37.433 42.433 39 40.5 39H7.5C5.567 39 4 37.433 4 35.5V12.5Z" fill="url(#grad-${f.id})" opacity="0.5"/>
-              <path d="M4 16.5C4 15.119 5.119 14 6.5 14H41.5C42.881 14 44 15.119 44 16.5V35.5C44 37.433 42.433 39 40.5 39H7.5C5.567 39 4 37.433 4 35.5V16.5Z" fill="url(#grad-${f.id})"/>
-            </svg>
-            <i class="ti ${f.icon} folder-glyph"></i>
+    <div class="explorer-list">
+      <div class="explorer-list-header">
+        <span class="col-name">Name</span>
+        <span class="col-date">Date modified</span>
+        <span class="col-type">Type</span>
+      </div>
+
+      <div class="explorer-list-body">
+        ${projectFolders.map(f => `
+          <div class="folder-row" data-folder="${f.id}" tabindex="0">
+            <span class="col-name">
+              <svg viewBox="0 0 48 48" class="folder-svg-sm" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 12.5C4 10.567 5.567 9 7.5 9H18L21.5 13H40.5C42.433 13 44 14.567 44 16.5V35.5C44 37.433 42.433 39 40.5 39H7.5C5.567 39 4 37.433 4 35.5V12.5Z" fill="#f6c453" opacity="0.55"/>
+                <path d="M4 16.5C4 15.119 5.119 14 6.5 14H41.5C42.881 14 44 15.119 44 16.5V35.5C44 37.433 42.433 39 40.5 39H7.5C5.567 39 4 37.433 4 35.5V16.5Z" fill="#f6c453"/>
+              </svg>
+              ${f.name}
+            </span>
+            <span class="col-date">${f.dateModified}</span>
+            <span class="col-type">${f.type}</span>
           </div>
-          <span class="folder-name">${f.name}</span>
-        </div>
-      `).join('')}
+        `).join('')}
+      </div>
     </div>
   `;
 }
@@ -358,18 +357,21 @@ function renderProjectDetail(id) {
 
       <div class="project-panel project-panel-right">
 
-        <div class="screenshot-main">
-          <i class="ti ti-photo"></i>
-          <span>Screenshot preview</span>
-        </div>
-
-        <div class="screenshot-gallery">
-          ${Array.from({ length: data.gallery }).map(() => `
-            <div class="screenshot-thumb">
-              <i class="ti ti-photo"></i>
-            </div>
-          `).join('')}
-        </div>
+        <a class="live-preview-card" href="${data.website}" target="_blank" rel="noopener" aria-label="Open ${data.title} website">
+          <div class="live-preview-frame">
+            <iframe
+              src="${data.website}"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              sandbox="allow-scripts allow-same-origin"
+              title="${data.title} live preview"
+            ></iframe>
+          </div>
+          <div class="live-preview-overlay">
+            <i class="ti ti-arrow-up-right"></i>
+            <span>Open live site</span>
+          </div>
+        </a>
 
       </div>
 
@@ -407,7 +409,7 @@ function explorerBack() {
 /* Event delegation on the stable #content container so the explorer
    keeps working across re-renders without touching the core nav logic. */
 document.getElementById('content').addEventListener('click', (e) => {
-  const folderEl = e.target.closest('.folder-item');
+  const folderEl = e.target.closest('.folder-row');
   if (folderEl) { explorerOpen(folderEl.dataset.folder); return; }
 
   const backEl = e.target.closest('[data-back]');
@@ -416,7 +418,7 @@ document.getElementById('content').addEventListener('click', (e) => {
 
 document.getElementById('content').addEventListener('keydown', (e) => {
   if (e.key !== 'Enter') return;
-  const folderEl = e.target.closest('.folder-item');
+  const folderEl = e.target.closest('.folder-row');
   if (folderEl) explorerOpen(folderEl.dataset.folder);
 });
 function contactHTML() { return `<div class="section-placeholder"><span>Contact</span></div>`; }
