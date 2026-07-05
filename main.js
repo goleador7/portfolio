@@ -428,7 +428,72 @@ document.getElementById('content').addEventListener('keydown', (e) => {
   const folderEl = e.target.closest('.folder-row');
   if (folderEl) explorerOpen(folderEl.dataset.folder);
 });
-function contactHTML() { return `<div class="section-placeholder"><span>Contact</span></div>`; }
+function contactHTML() {
+  const goleadorLinks = [
+    { icon: 'ti-brand-facebook',  label: 'Facebook',  value: 'facebook.com/imad.eddine.1291421', href: 'https://www.facebook.com/imad.eddine.1291421' },
+    { icon: 'ti-brand-instagram', label: 'Instagram', value: '@imado__777',                        href: 'https://www.instagram.com/imado__777/' },
+    { icon: 'ti-brand-discord',   label: 'Discord',    value: 'ima.ddd',                             href: null },
+    { icon: 'ti-brand-whatsapp',  label: 'WhatsApp',   value: '+213 776 072 493',                    href: 'https://wa.me/213776072493' },
+    { icon: 'ti-mail',            label: 'Email',      value: 'imadlahcen4@gmail.com',                href: 'mailto:imadlahcen4@gmail.com' },
+  ];
+
+  const riwa9Links = [
+    { icon: 'ti-brand-facebook',  label: 'Facebook',  value: 'Riwa9 Dev',            href: 'https://www.facebook.com/profile.php?id=61589823940543' },
+    { icon: 'ti-brand-instagram', label: 'Instagram', value: '@riwa9.dev',           href: 'https://www.instagram.com/riwa9.dev/' },
+    { icon: 'ti-brand-whatsapp',  label: 'WhatsApp',   value: '+213 557 362 935',    href: 'https://wa.me/213557362935' },
+    { icon: 'ti-mail',            label: 'Email',      value: 'riwa9dev@gmail.com',   href: 'mailto:riwa9dev@gmail.com' },
+  ];
+
+  const renderLinks = (links) => links.map(l => {
+    const inner = `
+      <i class="ti ${l.icon}"></i>
+      <span class="contact-link-text">
+        <span class="contact-link-label">${l.label}</span>
+        <span class="contact-link-value">${l.value}</span>
+      </span>
+    `;
+    return l.href
+      ? `<a class="contact-link" href="${l.href}" target="_blank" rel="noopener">${inner}</a>`
+      : `<span class="contact-link contact-link-static">${inner}</span>`;
+  }).join('');
+
+  return `
+    <div class="contact-section">
+
+      <div class="contact-heading">
+        <h2>Let's Work Together</h2>
+        <p>Whether it's a personal project or something for your business — if you want to build it, let's talk.</p>
+      </div>
+
+      <div class="contact-columns">
+
+        <div class="contact-side contact-side-personal">
+          <span class="contact-side-tag">Personal</span>
+          <h3>Goleador</h3>
+          <div class="contact-links">
+            ${renderLinks(goleadorLinks)}
+          </div>
+        </div>
+
+        <div class="contact-divider">
+          <div class="contact-gif-wrap">
+            <img src="src/2sides.gif" alt="" class="contact-gif">
+          </div>
+        </div>
+
+        <div class="contact-side contact-side-agency">
+          <span class="contact-side-tag">Agency</span>
+          <h3>Riwa9 Dev</h3>
+          <div class="contact-links">
+            ${renderLinks(riwa9Links)}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
 
 /* ── EVENTS ── */
 window.addEventListener('load', () => goTo(0));
