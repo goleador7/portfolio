@@ -1405,6 +1405,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
   .section-inner{ height:auto; min-height:100%; }
   #statusbar{ display:none; } /* keyboard hints are irrelevant on touch */
 
+  /* CONTACT — let it grow past one screen; #content scrolls to reveal it */
+  .contact-section{ height:auto; min-height:100%; justify-content:flex-start; padding-top:32px; padding-bottom:32px; }
+
   /* HOME — stack character under the title, everything centered */
   .section-home{
     height:auto; min-height:100%;

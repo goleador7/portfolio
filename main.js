@@ -36,6 +36,8 @@ function goTo(idx) {
   track.style.transform = `translateX(${offset}px)`;
 
   renderContent(idx);
+
+  try { localStorage.setItem('goleador_section', String(idx)); } catch (e) {}
 }
 
 /* ── CONTENT RENDERER ── */
@@ -533,7 +535,14 @@ function contactHTML() {
 }
 
 /* ── EVENTS ── */
-window.addEventListener('load', () => goTo(0));
+window.addEventListener('load', () => {
+  let saved = 0;
+  try {
+    const stored = parseInt(localStorage.getItem('goleador_section'), 10);
+    if (!isNaN(stored) && stored >= 0 && stored < sections.length) saved = stored;
+  } catch (e) {}
+  goTo(saved);
+});
 window.addEventListener('resize', () => goTo(current));
 
 document.addEventListener('keydown', e => {
