@@ -510,51 +510,6 @@ wrap.addEventListener('wheel', e => {
   else { if (current > 0) goTo(current - 1); }
 }, { passive: false });
 
-/* ── TOUCH SWIPE NAVIGATION (mobile) ──
-   Lets a phone user swipe up/down over the content area to move
-   between sections, without needing to tap the carousel or press
-   Enter. Only triggers at the top/bottom of that section's own
-   scroll so it never hijacks normal scrolling inside a long section
-   (About, Projects, Contact, etc). */
-const contentEl = document.getElementById('content');
-let touchStartY = null;
-let touchScrollEl = contentEl;
-
-function getScrollParent(el) {
-  while (el && el !== contentEl.parentElement) {
-    const style = window.getComputedStyle(el);
-    if (/(auto|scroll)/.test(style.overflowY) && el.scrollHeight > el.clientHeight) return el;
-    el = el.parentElement;
-  }
-  return contentEl;
-}
-
-contentEl.addEventListener('touchstart', e => {
-  touchStartY = e.touches[0].clientY;
-  touchScrollEl = getScrollParent(e.target);
-}, { passive: true });
-
-contentEl.addEventListener('touchend', e => {
-  if (touchStartY === null) return;
-  const touchEndY = e.changedTouches[0].clientY;
-  const diff = touchStartY - touchEndY;
-  touchStartY = null;
-
-  const SWIPE_THRESHOLD = 55;
-  if (Math.abs(diff) < SWIPE_THRESHOLD) return;
-
-  const atTop = touchScrollEl.scrollTop <= 2;
-  const atBottom = touchScrollEl.scrollTop + touchScrollEl.clientHeight >= touchScrollEl.scrollHeight - 2;
-
-  if (diff > 0) {
-    // swiped up → next section, only if this scroll area is at its bottom
-    if (atBottom && current < sections.length - 1) goTo(current + 1);
-  } else {
-    // swiped down → previous section, only if this scroll area is at its top
-    if (atTop && current > 0) goTo(current - 1);
-  }
-}, { passive: true });
-
 /* ── CLOCK ── */
 function tick() {
   const t = new Date().toLocaleTimeString('fr-DZ', { hour: '2-digit', minute: '2-digit' });
