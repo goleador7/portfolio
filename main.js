@@ -29,10 +29,16 @@ const STEP = ITEM_W + ITEM_GAP;
 
 function goTo(idx) {
   current = idx;
-  document.querySelectorAll('.icon-item').forEach((el, i) => el.classList.toggle('active', i === idx));
+  const items = document.querySelectorAll('.icon-item');
+  items.forEach((el, i) => el.classList.toggle('active', i === idx));
 
   const wrapW = wrap.offsetWidth;
-  const offset = (wrapW / 2) - (idx * STEP) - (ITEM_W / 2) - 24;
+  const targetItem = items[idx];
+  // Measure the actual rendered item instead of assuming desktop sizes,
+  // so centering stays correct across all responsive breakpoints.
+  const offset = targetItem
+    ? (wrapW / 2) - (targetItem.offsetLeft + targetItem.offsetWidth / 2)
+    : 0;
   track.style.transform = `translateX(${offset}px)`;
 
   renderContent(idx);
@@ -50,6 +56,7 @@ function renderContent(idx) {
   div.innerHTML = renderers[idx]?.() ?? '';
   el.innerHTML = '';
   el.appendChild(div);
+  el.scrollTop = 0;
 
   if (idx === 4) initContactFlip(div);
 }
