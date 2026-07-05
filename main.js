@@ -48,6 +48,36 @@ function renderContent(idx) {
   div.innerHTML = renderers[idx]?.() ?? '';
   el.innerHTML = '';
   el.appendChild(div);
+
+  if (idx === 4) initContactFlip(div);
+}
+
+/* ── CONTACT FLIP (mobile) ──
+   On phone widths, only one contact card shows at a time.
+   Personal is shown first; tapping/clicking the gif flip-button
+   flips it 180deg and swaps to the Riwa9 Dev card, and back again. */
+let contactShowing = 'personal';
+
+function initContactFlip(scope) {
+  const btn = scope.querySelector('#contactFlipBtn');
+  const personal = scope.querySelector('[data-card="personal"]');
+  const agency = scope.querySelector('[data-card="agency"]');
+  if (!btn || !personal || !agency) return;
+
+  const apply = () => {
+    const showPersonal = contactShowing === 'personal';
+    personal.classList.toggle('contact-card-hidden', !showPersonal);
+    agency.classList.toggle('contact-card-hidden', showPersonal);
+    btn.classList.toggle('is-flipped', !showPersonal);
+    btn.setAttribute('aria-label', showPersonal ? 'Show Riwa9 Dev contact' : 'Show personal contact');
+  };
+
+  apply();
+
+  btn.addEventListener('click', () => {
+    contactShowing = contactShowing === 'personal' ? 'agency' : 'personal';
+    apply();
+  });
 }
 
 /* ── HOME ── */
@@ -466,7 +496,7 @@ function contactHTML() {
 
       <div class="contact-columns">
 
-        <div class="contact-side contact-side-personal">
+        <div class="contact-side contact-side-personal" data-card="personal">
           <span class="contact-side-tag">Personal</span>
           <h3>Goleador</h3>
           <div class="contact-links">
@@ -475,12 +505,19 @@ function contactHTML() {
         </div>
 
         <div class="contact-divider">
-          <div class="contact-gif-wrap">
-            <img src="src/2sides.gif" alt="" class="contact-gif">
-          </div>
+          <button type="button" class="contact-flip-btn" id="contactFlipBtn" aria-label="Switch contact card">
+            <div class="contact-flip-inner">
+              <div class="contact-flip-face contact-flip-front">
+                <img src="src/2sides.gif" alt="" class="contact-gif">
+              </div>
+              <div class="contact-flip-face contact-flip-back">
+                <img src="src/2sides.gif" alt="" class="contact-gif">
+              </div>
+            </div>
+          </button>
         </div>
 
-        <div class="contact-side contact-side-agency">
+        <div class="contact-side contact-side-agency" data-card="agency">
           <span class="contact-side-tag">Agency</span>
           <h3>Riwa9 Dev</h3>
           <p class="contact-side-tagline">Riwa9 Dev is growing, and we're always looking for skilled people to join the team. If you want to work with us, reach out below.</p>
