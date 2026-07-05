@@ -1298,12 +1298,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
 }
 
 @media(max-width:900px){
-  .contact-columns{ flex-direction:column; align-items:center; }
+  .contact-columns{ flex-direction:column; align-items:center; gap:26px; }
+
+  /* the gif becomes a small centered header icon, sitting cleanly
+     above both cards instead of overlapping them */
   .contact-divider{
+      order:-1;
       width:auto;
-      margin:-16px 0;
-      transform:rotate(90deg);
+      margin:0 0 4px;
+      transform:none;
   }
+  .contact-gif-wrap{ width:84px; height:84px; }
+
   .contact-side{ width:100%; max-width:420px; }
 }
 /* ═══════════════════════════════════════════════════════════════
@@ -1413,8 +1419,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
   .project-title{ font-size:22px; }
 
   .contact-heading h2{ font-size:22px; }
-  .contact-gif-wrap{ width:120px; height:120px; }
-  .contact-divider{ margin:-10px 0; }
+  .contact-gif-wrap{ width:76px; height:76px; }
+  .contact-divider{ margin:0 0 4px; }
 }
 
 /* ── 430px — standard phones (430/414/390/375) ── */
@@ -1445,5 +1451,5 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1117; c
   .icon-label{ font-size:10px; }
   #topbar-brand{ font-size:10px; }
   .contact-heading h2{ font-size:19px; }
-  .contact-gif-wrap{ width:96px; height:96px; }
+  .contact-gif-wrap{ width:64px; height:64px; }
 }
