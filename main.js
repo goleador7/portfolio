@@ -462,7 +462,6 @@ function contactHTML() {
 
       <div class="contact-heading">
         <h2>Let's Work Together</h2>
-        <p>Whether it's a personal project or something for your business — if you want to build it, let's talk.</p>
       </div>
 
       <div class="contact-columns">
@@ -484,6 +483,7 @@ function contactHTML() {
         <div class="contact-side contact-side-agency">
           <span class="contact-side-tag">Agency</span>
           <h3>Riwa9 Dev</h3>
+          <p class="contact-side-tagline">Riwa9 Dev is growing, and we're always looking for skilled people to join the team. If you want to work with us, reach out below.</p>
           <div class="contact-links">
             ${renderLinks(riwa9Links)}
           </div>
