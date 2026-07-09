@@ -29,13 +29,21 @@ const STEP = ITEM_W + ITEM_GAP;
 
 function goTo(idx) {
   current = idx;
-  document.querySelectorAll('.icon-item').forEach((el, i) => el.classList.toggle('active', i === idx));
+  const items = document.querySelectorAll('.icon-item');
+  items.forEach((el, i) => el.classList.toggle('active', i === idx));
 
   const wrapW = wrap.offsetWidth;
-  const offset = (wrapW / 2) - (idx * STEP) - (ITEM_W / 2) - 24;
+  const targetItem = items[idx];
+  // Measure the actual rendered item instead of assuming desktop sizes,
+  // so centering stays correct across all responsive breakpoints.
+  const offset = targetItem
+    ? (wrapW / 2) - (targetItem.offsetLeft + targetItem.offsetWidth / 2)
+    : 0;
   track.style.transform = `translateX(${offset}px)`;
 
   renderContent(idx);
+
+  try { localStorage.setItem('goleador_section', String(idx)); } catch (e) {}
 }
 
 /* ── CONTENT RENDERER ── */
@@ -48,6 +56,37 @@ function renderContent(idx) {
   div.innerHTML = renderers[idx]?.() ?? '';
   el.innerHTML = '';
   el.appendChild(div);
+  el.scrollTop = 0;
+
+  if (idx === 4) initContactFlip(div);
+}
+
+/* ── CONTACT FLIP (mobile) ──
+   On phone widths, only one contact card shows at a time.
+   Personal is shown first; tapping/clicking the gif flip-button
+   flips it 180deg and swaps to the Riwa9 Dev card, and back again. */
+let contactShowing = 'personal';
+
+function initContactFlip(scope) {
+  const btn = scope.querySelector('#contactFlipBtn');
+  const personal = scope.querySelector('[data-card="personal"]');
+  const agency = scope.querySelector('[data-card="agency"]');
+  if (!btn || !personal || !agency) return;
+
+  const apply = () => {
+    const showPersonal = contactShowing === 'personal';
+    personal.classList.toggle('contact-card-hidden', !showPersonal);
+    agency.classList.toggle('contact-card-hidden', showPersonal);
+    btn.classList.toggle('is-flipped', !showPersonal);
+    btn.setAttribute('aria-label', showPersonal ? 'Show Riwa9 Dev contact' : 'Show personal contact');
+  };
+
+  apply();
+
+  btn.addEventListener('click', () => {
+    contactShowing = contactShowing === 'personal' ? 'agency' : 'personal';
+    apply();
+  });
 }
 
 /* ── HOME ── */
@@ -204,8 +243,7 @@ function skillsHTML() {
 
 /* ── DATA ── */
 const projectFolders = [
-  { id: 'riwa9-store',     name: 'riwa9-store',     dateModified: '6/30/2026 11:12 PM', type: 'File folder', hasContent: true },
-  { id: 'mini-ats-system', name: 'mini-ats-system', dateModified: '7/8/2026 9:14 PM',   type: 'File folder', hasContent: true },
+  { id: 'riwa9-store', name: 'riwa9-store', dateModified: '6/30/2026 11:12 PM', type: 'File folder', hasContent: true },
 ];
 
 const projectData = {
@@ -229,27 +267,6 @@ const projectData = {
       { value: 'Vanilla JS', label: 'Frontend' },
     ],
     website: 'https://riwa9-store.vercel.app/',
-    github: null,
-  },
-
-  'mini-ats-system': {
-    title: 'MINI ATS SYSTEM',
-    description: `A resume-screening tool that scores how well a CV matches a job description before you apply. Upload a resume (PDF/DOCX) and a job posting, and it returns an overall match score, a skills-match breakdown, and concrete suggestions to close the gap — all analyzed locally with classic NLP, no external AI API involved.`,
-    tech: ['Python', 'Streamlit', 'NLTK', 'Scikit-learn', 'Pandas', 'NumPy', 'pdfplumber', 'python-docx'],
-    featureGroups: [
-      { label: 'Input', items: ['PDF Upload', 'DOCX Upload', 'Paste Job Description', 'Upload Job Description File'] },
-      { label: 'Analysis', items: ['Overall Text Match Score', 'Skills Match %', 'POS-based Skill Extraction', 'Unigram + Bigram Similarity'] },
-      { label: 'Results', items: ['Matched Skills', 'Missing Skills', 'Match Status Badge', 'Improvement Recommendations'] },
-      { label: 'Engineering', items: ['Domain-agnostic Skill Detection', 'Skill-section Parsing', 'Responsive Dashboard UI'] },
-    ],
-    architecture: `A Streamlit frontend handles file upload and results rendering, backed by two Python modules: a text extractor (pdfplumber / python-docx) that normalizes PDFs and Word docs into plain text, and an analyzer that tags parts of speech with NLTK to pull out skill-like terms without a hardcoded skills list, then scores similarity between the resume and job text using Scikit-learn's CountVectorizer and cosine similarity across unigrams and bigrams.`,
-    stats: [
-      { value: 'NLP', label: 'Core Engine' },
-      { value: 'PDF/DOCX', label: 'Supported Files' },
-      { value: 'Streamlit', label: 'Frontend' },
-      { value: 'Local', label: 'No External AI' },
-    ],
-    website: 'https://mini-ats-system.streamlit.app/',
     github: null,
   }
 };
@@ -488,7 +505,7 @@ function contactHTML() {
 
       <div class="contact-columns">
 
-        <div class="contact-side contact-side-personal">
+        <div class="contact-side contact-side-personal" data-card="personal">
           <span class="contact-side-tag">Personal</span>
           <h3>Goleador</h3>
           <div class="contact-links">
@@ -497,12 +514,19 @@ function contactHTML() {
         </div>
 
         <div class="contact-divider">
-          <div class="contact-gif-wrap">
-            <img src="src/2sides.gif" alt="" class="contact-gif">
-          </div>
+          <button type="button" class="contact-flip-btn" id="contactFlipBtn" aria-label="Switch contact card">
+            <div class="contact-flip-inner">
+              <div class="contact-flip-face contact-flip-front">
+                <img src="src/2sides.gif" alt="" class="contact-gif">
+              </div>
+              <div class="contact-flip-face contact-flip-back">
+                <img src="src/2sides.gif" alt="" class="contact-gif">
+              </div>
+            </div>
+          </button>
         </div>
 
-        <div class="contact-side contact-side-agency">
+        <div class="contact-side contact-side-agency" data-card="agency">
           <span class="contact-side-tag">Agency</span>
           <h3>Riwa9 Dev</h3>
           <p class="contact-side-tagline">Riwa9 Dev is growing, and we're always looking for skilled people to join the team. If you want to work with us, reach out below.</p>
@@ -518,7 +542,14 @@ function contactHTML() {
 }
 
 /* ── EVENTS ── */
-window.addEventListener('load', () => goTo(0));
+window.addEventListener('load', () => {
+  let saved = 0;
+  try {
+    const stored = parseInt(localStorage.getItem('goleador_section'), 10);
+    if (!isNaN(stored) && stored >= 0 && stored < sections.length) saved = stored;
+  } catch (e) {}
+  goTo(saved);
+});
 window.addEventListener('resize', () => goTo(current));
 
 document.addEventListener('keydown', e => {
