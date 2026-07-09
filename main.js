@@ -244,6 +244,7 @@ function skillsHTML() {
 /* ── DATA ── */
 const projectFolders = [
   { id: 'riwa9-store', name: 'riwa9-store', dateModified: '6/30/2026 11:12 PM', type: 'File folder', hasContent: true },
+  { id: 'mini-ats-system', name: 'mini-ats-system', dateModified: '7/9/2026 4:48 PM', type: 'File folder', hasContent: true },
 ];
 
 const projectData = {
@@ -267,6 +268,26 @@ const projectData = {
       { value: 'Vanilla JS', label: 'Frontend' },
     ],
     website: 'https://riwa9-store.vercel.app/',
+    github: null,
+  },
+  'mini-ats-system': {
+    title: 'MINI ATS SYSTEM',
+    description: `An AI-assisted resume screener that compares a candidate's CV against a job description and scores how well they match. Extracts text from PDF/DOCX/TXT files, runs NLP-based text similarity and skills matching, then surfaces an overall score, matched/missing skills, and concrete recommendations to improve the match.`,
+    tech: ['Python', 'Streamlit', 'NLP', 'Scikit-Learn', 'pdfplumber', 'python-docx', 'NLTK', 'Pandas', 'NumPy'],
+    featureGroups: [
+      { label: 'Input', items: ['Resume Upload (PDF/DOCX)', 'Job Description Paste', 'Job Description Upload (PDF/DOCX/TXT)'] },
+      { label: 'Analysis', items: ['Text Similarity Scoring', 'Skills Matching', 'Matched Skills', 'Missing Skills'] },
+      { label: 'Results', items: ['Overall Match Score', 'Skills Match %', 'Match Status Badge', 'Improvement Recommendations'] },
+      { label: 'Engineering', items: ['Custom Streamlit UI', 'File Text Extraction', 'Responsive Dashboard Layout'] },
+    ],
+    architecture: `A Streamlit single-page app: uploaded resume and job description files are parsed via a dedicated text-extraction module (pdfplumber for PDFs, python-docx for DOCX), then passed to an analysis module that scores text similarity and skill overlap using NLTK and Scikit-Learn, rendering results back into a custom-styled dashboard UI.`,
+    stats: [
+      { value: 'Python', label: 'Backend' },
+      { value: 'Streamlit', label: 'Framework' },
+      { value: 'NLP', label: 'Analysis' },
+      { value: '3', label: 'File Formats' },
+    ],
+    website: 'https://mini-ats-system.streamlit.app/',
     github: null,
   }
 };
