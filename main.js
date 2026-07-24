@@ -490,12 +490,12 @@ document.getElementById('content').addEventListener('keydown', (e) => {
 });
 function contactHTML() {
   const goleadorLinks = [
-    { icon: 'ti-brand-facebook',  label: 'Facebook',  value: 'facebook.com/imad.eddine.1291421', href: 'https://www.facebook.com/imad.eddine.1291421' },
+    { icon: 'ti-brand-facebook',  label: 'Facebook',  value: 'IMad Bencherif', href: 'https://www.facebook.com/imad.eddine.1291421' },
     { icon: 'ti-brand-instagram', label: 'Instagram', value: '@imado__777',                        href: 'https://www.instagram.com/imado__777/' },
     { icon: 'ti-brand-discord',   label: 'Discord',    value: 'ima.ddd',                             href: null },
     { icon: 'ti-brand-whatsapp',  label: 'WhatsApp',   value: '+213 776 072 493',                    href: 'https://wa.me/213776072493' },
     { icon: 'ti-mail',            label: 'Email',      value: 'imadlahcen4@gmail.com',                href: 'mailto:imadlahcen4@gmail.com' },
-    { icon: 'ti-github',          label: 'GitHub',     value: 'github.com/goleador7',                href: 'https://github.com/goleador7' }
+    { icon: 'ti-brand-github',          label: 'GitHub',     value: 'goleador7',                href: 'https://github.com/goleador7' },
   ];
 
   const riwa9Links = [
