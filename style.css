@@ -23,6 +23,7 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+    background-color: #111;
 }
 
 /* NAVBAR */
@@ -569,7 +570,7 @@ html[dir="rtl"] .nav-links.open {
 }
 
 .contact {
-    padding: clamp(4rem, 12vw, 20rem) clamp(1.25rem, 5%, 4rem);
+    padding: clamp(4rem, 16vw, 22em) clamp(1.25rem, 5%, 6rem);
     background-color: #f9f9f9;
 }
 
