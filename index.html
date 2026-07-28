@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -7,42 +7,219 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<video id="bg-video" autoplay muted loop playsinline>
-  <source src="src/background.mp4" type="video/mp4">
-</video>
-<div id="bg-overlay"></div>
-
-<div id="app">
-
-  <!-- HEADER -->
-  <div id="topbar">
-    <span id="topbar-brand">Goleador</span>
-    <span id="topbar-clock"></span>
-  </div>
-
-  <!-- CAROUSEL -->
-  <div id="carousel-wrap">
-    <div id="icon-track"></div>
-  </div>
-
-  <!-- CONTENT -->
-  <div id="content"></div>
-
-  <!-- STATUS BAR -->
-  <div id="statusbar">
-    <div style="display:flex;gap:16px;">
-      <span><span class="key">←</span> <span class="key">→</span> Navigate</span>
-      <span><span class="key">Enter</span> Select</span>
-    </div>
-    <span></span>
-  </div>
+<div class="nav">
+  <div class="logo">Goleador.</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" data-en="Home" data-fr="Accueil" data-ar="الرئيسية">Home</a></li>
+    <li><a href="#about" data-en="About me" data-fr="À propos" data-ar="نبذة عني">About me</a></li>
+    <li><a href="#services" data-en="Services" data-fr="Services" data-ar="الخدمات">Services</a></li>
+    <li><a href="#projects" data-en="Projects" data-fr="Projets" data-ar="المشاريع">Projects</a></li>
+    <li><a href="#contact" data-en="Contact" data-fr="Contact" data-ar="تواصل">Contact</a></li>
+  </ul>
+ <div class="lang-toggle">
+  <button class="lang-option active" data-lang="en">EN</button>
+  <button class="lang-option" data-lang="fr">FR</button>
+  <button class="lang-option" data-lang="ar">AR</button>
+</div>
+ <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+  <span></span>
+  <span></span>
+  <span></span>
+ </button>
 
 </div>
+<div class="nav-overlay" id="navOverlay"></div>
+<section class="hero" id="home">
+  <div class="left-section">
+    <h1 class="title" data-en="HELLO" data-fr="BONJOUR" data-ar="مرحباً">HELLO</h1>
+    <p class="rotating-line" id="rotatingTitle" aria-live="polite">
+      <span id="rotatingTitleText"></span><span class="title-cursor" aria-hidden="true">|</span>
+    </p>
+    <p class="subtitle"
+       data-en="I'm Imad aka Goleador, a full-stack developer building solutions that bring real results for real businesses."
+       data-fr="Je suis Imad, alias Goleador, développeur full-stack. Je conçois des solutions qui apportent de vrais résultats à de vraies entreprises."
+       data-ar="أنا عماد المعروف بـ Goleador، مطور full-stack أبني حلولاً تحقق نتائج حقيقية لشركات حقيقية.">I'm Imad aka Goleador, a full-stack developer building solutions that bring real results for real businesses.</p>
+  </div>
+  <div class="right-section">
+    <img src="src/luffy.jpg" alt="Goleador" class="hero-img">
+  </div>
+</section>
 
+<section class="about" id="about">
+  <div class="container about-flex">
+    <div class="about-text">
+      <h2 data-en="About Me" data-fr="À propos de moi" data-ar="نبذة عني">About Me</h2>
+      <p class="about-lead" data-en="Hi, I'm Imad" data-fr="Salut, je suis Imad" data-ar="مرحباً، أنا عماد">Hi, I'm Imad</p>
+      <p data-en="better known as Goleador, a Master's student specializing in Artificial Intelligence and Cybersecurity, holding a Bachelor's degree in Computer Science, As a Full Stack Developer and CEO of Riwaq Dev, I focus on creating scalable web applications, intuitive user interfaces, and solutions that solve real-world problems."
+         data-fr="plus connu sous le nom de Goleador. Étudiant en Master spécialisé en Intelligence Artificielle et Cybersécurité, titulaire d'une Licence en Informatique. En tant que développeur Full Stack et fondateur de Riwaq Dev, je conçois des applications web évolutives, des interfaces intuitives et des solutions qui répondent à de vrais problèmes."
+         data-ar="المعروف بـ Goleador، طالب ماستر متخصص في الذكاء الاصطناعي والأمن السيبراني، حاصل على ليسانس في علوم الحاسوب. بصفتي مطور Full Stack ومؤسس Riwaq Dev، أركز على بناء تطبيقات ويب قابلة للتوسع، وواجهات مستخدم بديهية، وحلول تعالج مشاكل حقيقية.">better known as Goleador, a Master's student specializing in Artificial Intelligence and Cybersecurity, holding a Bachelor's degree in Computer Science, As a Full Stack Developer and CEO of Riwaq Dev, I focus on creating scalable web applications, intuitive user interfaces, and solutions that solve real-world problems.</p>
+    </div>
+    <div class="about-skills">
+      <span class="section-label" data-en="Skills" data-fr="Compétences" data-ar="المهارات">Skills</span>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3 data-en="Languages" data-fr="Langages" data-ar="لغات البرمجة">Languages</h3>
+          <ul>
+            <li>PHP</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>JavaScript</li>
+            <li>SQL</li>
+            <li>HTML</li>
+            <li>CSS</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h3 data-en="Frameworks & Libraries" data-fr="Frameworks & Bibliothèques" data-ar="أطر عمل ومكتبات">Frameworks & Libraries</h3>
+          <ul>
+            <li>Laravel</li>
+            <li>Bootstrap</li>
+            <li>Pandas</li>
+            <li>Scikit-learn</li>
+            <li>OpenCV</li>
+            <li>Matplotlib</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h3 data-en="Databases" data-fr="Bases de données" data-ar="قواعد البيانات">Databases</h3>
+          <ul>
+            <li>MySQL</li>
+            <li>MariaDB</li>
+            <li>PostgreSQL</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h3 data-en="Tools" data-fr="Outils" data-ar="أدوات">Tools</h3>
+          <ul>
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>Visual Studio Code</li>
+            <li>Android Studio</li>
+            <li>XAMPP</li>
+            <li>phpMyAdmin</li>
+            <li>cPanel</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h3 data-en="Networking" data-fr="Réseaux" data-ar="الشبكات">Networking</h3>
+          <ul>
+            <li>Cisco Packet Tracer</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h3 data-en="Machine Learning" data-fr="Machine Learning" data-ar="تعلم الآلة">Machine Learning</h3>
+          <ul>
+            <li>Scikit-learn</li>
+            <li>OpenCV</li>
+            <li>Pandas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="services" id="services">
+  <div class="container">
+    <span class="section-label" data-en="Services" data-fr="Services" data-ar="الخدمات">Services</span>
+    <h2 data-en="What I can build for you" data-fr="Ce que je peux créer pour vous" data-ar="ما يمكنني بناؤه من أجلك">What I can build for you</h2>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h3 data-en="Web Development" data-fr="Développement Web" data-ar="تطوير الويب">Web Development</h3>
+        <p data-en="Custom websites and web apps built to solve real business problems — fast, secure, and built to grow with you."
+           data-fr="Sites web et applications sur mesure conçus pour résoudre de vrais problèmes d'entreprise — rapides, sécurisés, et évolutifs avec vous."
+           data-ar="مواقع وتطبيقات ويب مخصصة مصممة لحل مشاكل الأعمال الحقيقية — سريعة وآمنة وقابلة للنمو معك.">Custom websites and web apps built to solve real business problems — fast, secure, and built to grow with you.</p>
+      </div>
+
+      <div class="service-card">
+        <h3 data-en="E-commerce Solutions" data-fr="Solutions E-commerce" data-ar="حلول التجارة الإلكترونية">E-commerce Solutions</h3>
+        <p data-en="A complete online store solution — so you can sell, manage orders, and grow your business without the hassle."
+           data-fr="Une solution de boutique en ligne complète — pour vendre, gérer vos commandes et développer votre activité sans tracas."
+           data-ar="حل متجر إلكتروني متكامل — لتتمكن من البيع وإدارة الطلبات وتنمية عملك دون عناء.">A complete online store solution — so you can sell, manage orders, and grow your business without the hassle.</p>
+      </div>
+
+      <div class="service-card">
+        <h3 data-en="Admin & Management Systems" data-fr="Systèmes d'administration" data-ar="أنظمة الإدارة">Admin & Management Systems</h3>
+        <p data-en="A simple dashboard to manage your clients, inventory, or bookings — so you spend less time on busywork."
+           data-fr="Un tableau de bord simple pour gérer vos clients, votre stock ou vos réservations — pour passer moins de temps sur les tâches répétitives."
+           data-ar="لوحة تحكم بسيطة لإدارة عملائك أو مخزونك أو حجوزاتك — لتقضي وقتاً أقل في المهام الروتينية.">A simple dashboard to manage your clients, inventory, or bookings — so you spend less time on busywork.</p>
+      </div>
+
+      <div class="service-card">
+        <h3 data-en="Data Analysis & Automation" data-fr="Analyse de données & Automatisation" data-ar="تحليل البيانات والأتمتة">Data Analysis & Automation</h3>
+        <p data-en="Smart tools that process your data, spot patterns, and automate repetitive tasks — so you make better decisions faster."
+           data-fr="Des outils intelligents qui traitent vos données, détectent des tendances et automatisent les tâches répétitives — pour des décisions plus rapides et plus éclairées."
+           data-ar="أدوات ذكية تعالج بياناتك وتكتشف الأنماط وتؤتمت المهام المتكررة — لاتخاذ قرارات أفضل وأسرع.">Smart tools that process your data, spot patterns, and automate repetitive tasks — so you make better decisions faster.</p>
+      </div>
+
+      <div class="service-card">
+        <h3 data-en="Custom Software Solutions" data-fr="Solutions logicielles sur mesure" data-ar="حلول برمجية مخصصة">Custom Software Solutions</h3>
+        <p data-en="Reliable, tailor-made applications built around exactly how your business works."
+           data-fr="Des applications fiables et sur mesure, conçues autour du fonctionnement exact de votre entreprise."
+           data-ar="تطبيقات موثوقة ومصممة خصيصاً حسب طريقة عمل شركتك بالضبط.">Reliable, tailor-made applications built around exactly how your business works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="projects" id="projects">
+  <div class="container">
+    <span class="section-label" data-en="Projects" data-fr="Projets" data-ar="المشاريع">Projects</span>
+    <h2 data-en="Things I've built" data-fr="Ce que j'ai construit" data-ar="أشياء قمت ببنائها">Things I've built</h2>
+
+    <div class="projects-grid">
+      <div class="project-card" data-project="riwa9">
+        <div class="project-tags">
+          <span>Laravel</span><span>Vanilla JS</span><span>E-commerce</span>
+        </div>
+        <h3>RIWA9 Store</h3>
+        <p data-en="A full e-commerce platform — product catalog, cart, orders, reviews, wishlist, and a secure admin panel."
+           data-fr="Une plateforme e-commerce complète — catalogue de produits, panier, commandes, avis, liste de souhaits et un panneau d'administration sécurisé."
+           data-ar="منصة تجارة إلكترونية متكاملة — كتالوج منتجات وسلة شراء وطلبات وتقييمات وقائمة رغبات ولوحة تحكم آمنة.">A full e-commerce platform — product catalog, cart, orders, reviews, wishlist, and a secure admin panel.</p>
+        <span class="view-more" data-en="View details →" data-fr="Voir les détails →" data-ar="عرض التفاصيل ←">View details →</span>
+      </div>
+
+      <div class="project-card" data-project="ats">
+        <div class="project-tags">
+          <span>Python</span><span>NLP</span><span>Machine Learning</span>
+        </div>
+        <h3>Mini ATS System</h3>
+        <p data-en="An AI-powered tool that screens and ranks resumes against job descriptions automatically."
+           data-fr="Un outil basé sur l'IA qui analyse et classe automatiquement les CV par rapport aux offres d'emploi."
+           data-ar="أداة مدعومة بالذكاء الاصطناعي تقوم بفرز وترتيب السير الذاتية تلقائياً وفق متطلبات الوظيفة.">An AI-powered tool that screens and ranks resumes against job descriptions automatically.</p>
+        <span class="view-more" data-en="View details →" data-fr="Voir les détails →" data-ar="عرض التفاصيل ←">View details →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <span class="section-label" data-en="Contact" data-fr="Contact" data-ar="تواصل">Contact</span>
+    <h2 data-en="Let's talk" data-fr="Discutons" data-ar="لنتحدث">Let's talk</h2>
+    <p class="contact-sub"
+       data-en="Pick whichever channel is easiest for you — I check WhatsApp and email the most."
+       data-fr="Choisissez le canal qui vous convient le mieux — je consulte surtout WhatsApp et l'email."
+       data-ar="اختر الوسيلة الأنسب لك — أتابع واتساب والبريد الإلكتروني أكثر من غيرهما.">Pick whichever channel is easiest for you — I check WhatsApp and email the most.</p>
+
+    <div class="contact-grid" id="contactGrid"></div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
 <script src="main.js"></script>
 </body>
 </html>
