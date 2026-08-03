@@ -190,6 +190,45 @@ updateActiveLink(); // run once on load
 
 // ===== PROJECT DATA (multilingual) =====
 const projectData = {
+  riwa9dev: {
+    title: { en: "Riwa9 Dev", fr: "Riwa9 Dev", ar: "Riwa9 Dev" },
+    tags: ["Laravel", "PHP", "MySQL", "Vanilla JavaScript"],
+    description: {
+      en: "The official website for Riwa9 Dev, the development agency I founded. A Laravel REST API backend powers a public site showcasing our projects and team, plus a custom admin panel to manage everything.",
+      fr: "Le site officiel de Riwa9 Dev, l'agence de développement que j'ai fondée. Un backend Laravel avec API REST alimente un site public présentant nos projets et notre équipe, ainsi qu'un panneau d'administration sur mesure pour tout gérer.",
+      ar: "الموقع الرسمي لـ Riwa9 Dev، وكالة التطوير التي أسستها. واجهة خلفية Laravel توفر REST API تشغّل موقعاً عاماً يعرض مشاريعنا وفريقنا، بالإضافة إلى لوحة تحكم مخصصة لإدارة كل شيء."
+    },
+    features: {
+      en: [
+        "Public site showcasing projects and team, pulled live from the database",
+        "Custom admin panel — add, edit, and delete projects and team members",
+        "Token-based authentication (Laravel Sanctum), admin-only protected routes",
+        "Full English / French / Arabic support with RTL layout",
+        "Clean REST API architecture — backend and frontend fully decoupled"
+      ],
+      fr: [
+        "Site public présentant projets et équipe, alimenté en direct depuis la base de données",
+        "Panneau d'administration sur mesure — ajouter, modifier et supprimer projets et membres de l'équipe",
+        "Authentification par token (Laravel Sanctum), routes protégées réservées aux administrateurs",
+        "Support complet anglais / français / arabe avec mise en page RTL",
+        "Architecture REST API propre — backend et frontend totalement découplés"
+      ],
+      ar: [
+        "موقع عام يعرض المشاريع والفريق، يُحدَّث مباشرة من قاعدة البيانات",
+        "لوحة تحكم مخصصة — إضافة وتعديل وحذف المشاريع وأعضاء الفريق",
+        "مصادقة عبر التوكن (Laravel Sanctum)، مسارات محمية للمشرفين فقط",
+        "دعم كامل للإنجليزية والفرنسية والعربية مع تخطيط من اليمين لليسار",
+        "معمارية REST API نظيفة — فصل تام بين الواجهة الخلفية والأمامية"
+      ]
+    },
+    why: {
+      en: "Built as the operating website for my own agency — not just a portfolio piece, but real infrastructure I use to showcase client work and manage my growing team.",
+      fr: "Conçu comme le site opérationnel de ma propre agence — pas seulement une pièce de portfolio, mais une véritable infrastructure que j'utilise pour présenter le travail client et gérer mon équipe grandissante.",
+      ar: "تم بناؤه كموقع تشغيلي لوكالتي الخاصة — ليس مجرد عمل ضمن معرض الأعمال، بل بنية تحتية حقيقية أستخدمها لعرض أعمال العملاء وإدارة فريقي المتنامي."
+    },
+    live: "https://riwa9-dev.vercel.app/",
+    backend: null
+  },
   riwa9: {
     title: { en: "RIWA9 Store", fr: "RIWA9 Store", ar: "متجر RIWA9" },
     tags: ["Laravel", "PHP", "MySQL", "Vanilla JavaScript"],
